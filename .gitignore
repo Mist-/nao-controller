@@ -238,4 +238,4 @@ _Pvt_Extensions
 # Intellij IDEA
 .idea/
 
-*.pyproject
+*.pyproj
