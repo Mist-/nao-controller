@@ -6,7 +6,7 @@ from lib.cmd_parser import Cmd
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 def initServer():
-    sock.bind(('127.0.0.1', 9999))
+    sock.bind(('0.0.0.0', 9998))
     sock.listen(1)
 
 # 通过socket获取一条语句
@@ -16,6 +16,7 @@ def getCommandList():
     while True:
         string = conn.recv(1024)
         cmds = string.split(';')
+        cmds.append('#')
         for cmd in cmds:
             if cmd == '#':
                 return (cmdList, conn)

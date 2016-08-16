@@ -1,9 +1,9 @@
 from naoqi import ALProxy
-from network.const import PORT
+from network.const import PORT, IP
 from lib.cmd_parser import Cmd
 from lib.elementParser import parse
 
-proxy = ALProxy('ALAutonomousLife', '127.0.0.1', PORT)
+proxy = ALProxy('ALAutonomousLife', IP, PORT)
 
 def proceed(cmd):
 	cmd = Cmd(cmd)
@@ -118,4 +118,3 @@ def getActivityNature(params):
 		return 'Error: function \'getActivityNature\' takes 2 params'
 	activity_name = parse(params[0])
 	return proxy.getActivityNature(activity_name)
-

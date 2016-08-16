@@ -3,7 +3,7 @@ from network.const import PORT
 from lib.cmd_parser import Cmd
 from lib.elementParser import parse
 
-proxy = ALProxy('ALTracker', '127.0.0.1', PORT)
+proxy = ALProxy('ALTracker', IP, PORT)
 
 def proceed(cmd):
 	cmd = Cmd(cmd)

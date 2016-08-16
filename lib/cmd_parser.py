@@ -14,7 +14,7 @@ class Cmd:
 
     # 返回指令的主体
     def getCommand(self):
-        cmds = re.split('[ ]+', self.cmdstr)
+        cmds = re.split('([\'].*[\'])|([\"].*[\"])|[ ]+', self.cmdstr)
         if len(cmds) > 0:
             return cmds[0]
         return ''
@@ -37,7 +37,7 @@ class Cmd:
 
     # 返回某个参数键对应的参数列表
     def getValues(self, key):
-        cmds = re.split('[ ]+', self.cmdstr)
+        cmds = re.split('([\'].*[\'])|([\"].*[\"])|[ ]+', self.cmdstr)
         values = []
         if len(key) == 1:
             key = '-' + key
@@ -46,9 +46,17 @@ class Cmd:
         for i in range(0, len(cmds)):
             if cmds[i] == key:
                 for j in range(i, len(cmds)):
+                    if cmds[j]:
+                        cmds[j] = str(cmds[j])
+                    if not cmds[j]: continue
                     mo = re.match('[-][-][a-zA-Z]+', cmds[j])
                     mo1 = re.match('[-][a-zA-Z]', cmds[j])
                     if not (mo and mo.group() == cmds[j] or mo1 and mo1.group() == cmds[j]):
                         values.append(cmds[j])
             pass
         return values
+
+
+if __name__ == '__main__':
+    cmd = Cmd("ALTextToSpeech say -p \"Hello, My name is NAO, this is a test program. \"")
+    print cmd.getValues("p")

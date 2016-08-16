@@ -1,13 +1,18 @@
 from network.server import initServer, getCommandList, give
+import thread
 
 initServer()
-cmdList, conn = getCommandList()
 
-feedback = ''
+def giveCommand(cmd, conn):
+    feedback = ''
 
-for cmd in cmdList:
-    feedback += str(give(cmd)) + '\n'
+    for cmd in cmdList:
+        feedback += str(give(cmd)) + '\n'
 
-conn.send(feedback)
+    conn.send(feedback)
+
+while True:
+    cmdList, conn = getCommandList()
+    thread.start_new_thread(giveCommand, (cmdList, conn))
 
 conn.close()

@@ -1,9 +1,9 @@
 from naoqi import ALProxy
-from network.const import PORT
+from network.const import PORT, IP
 from lib.cmd_parser import Cmd
 from lib.elementParser import parse
 
-proxy = ALProxy('ALBehaviorManager', '127.0.0.1', PORT)
+proxy = ALProxy('ALBehaviorManager', IP, PORT)
 
 def proceed(cmd):
 	cmd = Cmd(cmd)

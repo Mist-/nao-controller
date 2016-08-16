@@ -1,9 +1,9 @@
 from naoqi import ALProxy
-from network.const import PORT
+from network.const import PORT, IP
 from lib.cmd_parser import Cmd
 from lib.elementParser import parse
 
-proxy = ALProxy('ALMotion', '127.0.0.1', PORT)
+proxy = ALProxy('ALMotion', IP, PORT)
 
 def proceed(cmd):
 	cmd = Cmd(cmd)
@@ -137,6 +137,7 @@ def move(params):
 	return proxy.move(x,y,theta,moveConfig)
 
 def moveToward(params):
+	print params
 	if len(params) < 3:
 		print 'Error: function \'moveToward\' takes 2 params'
 		return 'Error: function \'moveToward\' takes 2 params'
@@ -144,7 +145,7 @@ def moveToward(params):
 	y = parse(params[1])
 	theta = parse(params[2])
 	return proxy.moveToward(x,y,theta)
-
+'''
 def moveToward(params):
 	if len(params) < 4:
 		print 'Error: function \'moveToward\' takes 2 params'
@@ -154,7 +155,7 @@ def moveToward(params):
 	theta = parse(params[2])
 	moveConfig = parse(params[3])
 	return proxy.moveToward(x,y,theta,moveConfig)
-
+'''
 def setWalkTargetVelocity(params):
 	if len(params) < 4:
 		print 'Error: function \'setWalkTargetVelocity\' takes 2 params'
@@ -197,6 +198,7 @@ def moveTo(params):
 	theta = parse(params[2])
 	return proxy.moveTo(x,y,theta)
 
+'''
 def moveTo(params):
 	if len(params) < 4:
 		print 'Error: function \'moveTo\' takes 2 params'
@@ -231,6 +233,7 @@ def moveTo(params):
 	theta = parse(params[2])
 	pTime = parse(params[3])
 	return proxy.moveTo(x,y,theta,pTime)
+'''
 
 def walkTo(params):
 	if len(params) < 3:
@@ -574,4 +577,3 @@ def wbEnableEffectorOptimization(params):
 	effectorName = parse(params[0])
 	isEnabled = parse(params[1])
 	return proxy.wbEnableEffectorOptimization(effectorName,isEnabled)
-

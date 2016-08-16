@@ -1,9 +1,9 @@
 from naoqi import ALProxy
-from network.const import PORT
+from network.const import PORT, IP
 from lib.cmd_parser import Cmd
 from lib.elementParser import parse
 
-proxy = ALProxy('ALTextToSpeech', '127.0.0.1', PORT)
+proxy = ALProxy('ALTextToSpeech', IP, PORT)
 
 def proceed(cmd):
 	cmd = Cmd(cmd)
@@ -63,7 +63,7 @@ def say(params):
 		return 'Error: function \'say\' takes 2 params'
 	stringToSay = parse(params[0])
 	return proxy.say(stringToSay)
-
+'''
 def say(params):
 	if len(params) < 2:
 		print 'Error: function \'say\' takes 2 params'
@@ -71,7 +71,7 @@ def say(params):
 	stringToSay = parse(params[0])
 	language = parse(params[1])
 	return proxy.say(stringToSay,language)
-
+'''
 def sayToFile(params):
 	if len(params) < 2:
 		print 'Error: function \'sayToFile\' takes 2 params'
@@ -133,4 +133,3 @@ def getLanguageEncoding(params):
 		return 'Error: function \'getLanguageEncoding\' takes 2 params'
 	languageName = parse(params[0])
 	return proxy.getLanguageEncoding(languageName)
-

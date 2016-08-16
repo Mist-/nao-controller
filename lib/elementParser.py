@@ -38,5 +38,3 @@ def fullyMatch(reg, str):
     if re.match(reg, str) and re.match(reg, str).group() == str:
         return True
     return False
-
-print parse('[1, 2, [2, 3, [4, 5, [6, 7]]]]')
